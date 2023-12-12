@@ -10,7 +10,6 @@ from sklearn.decomposition import PCA
 
 M = pds.read_csv('sampleDataset.csv')
 M = M.drop('CUST_ID', axis = 1)
-
 M.fillna(method ='ffill', inplace = True)
 print(M.head())
 
@@ -26,7 +25,6 @@ print(M_principal.head())
 
 
 db_default = DBSCAN(eps = 0.0375, min_samples = 3).fit(M_principal)
-
 labeling = db_default.labels_
 
 colours = {}
@@ -60,7 +58,6 @@ colours1[5] = 'm'
 colours1[-1] = 'k'
 
 cvec = [colours1[label] for label in labeling]
-
 colors = ['r', 'g', 'b', 'c', 'y', 'm', 'k' ]
 r = pplt.scatter(
 M_principal['C1'], M_principal['C2'], marker ='o', color = colors[0])
@@ -79,10 +76,10 @@ M_principal['C1'], M_principal['C2'], marker ='o', color = colors[6])
 
 pplt.figure(figsize =(9, 9))
 pplt.scatter(M_principal['C1'], M_principal['C2'], c = cvec)
-pplt.legend((r, g, b, c, y, m, k),
-('Label M.0', 'Label M.1', 'Label M.2', 'Label M.3', 'Label M.4','Label M.5', 'Label M.-1'),
-scatterpoints = 1,
-loc ='upper left', 
-ncol = 3,
-fontsize = 10) 
+pplt.legend((r, g, b, c, y, m, k), 
+            ('Label M.0', 'Label M.1', 'Label M.2', 'Label M.3', 'Label M.4','Label M.5', 'Label M.-1'),
+            scatterpoints = 1,
+            loc ='upper left', 
+            ncol = 3,
+            fontsize = 10) 
 pplt.show()

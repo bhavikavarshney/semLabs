@@ -21,10 +21,11 @@ regressor.fit(X_train, y_train)
 
 # Predicting the Test set results
 y_pred = regressor.predict(X_test)
+x_pred = regressor.predict(X_train)
 
 # Visualising the Training set results
 plt.scatter(X_train, y_train, color = 'red')
-plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.plot(X_train, x_pred, color = 'blue')
 plt.title('Salary vs Experience (Training set)')
 plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
@@ -32,7 +33,7 @@ plt.show()
 
 # Visualising the Test set results
 plt.scatter(X_test, y_test, color = 'red')
-plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.plot(X_train, x_pred, color = 'blue')
 plt.title('Salary vs Experience (Test set)')
 plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
@@ -53,31 +54,20 @@ y = dataset.iloc[:, -1].values
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
 
-print(X_train)
-print(X_test)
-print(y_train)
-print(y_test)
-
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-print(X_train)
-print(X_test)
-
 # Training the Logistic Regression model on the Training set
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(random_state = 0)
 classifier.fit(X_train, y_train)
 
-# Predicting a new result
-print(classifier.predict(sc.transform([[30,87000]])))
-
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
-print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
+# print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
 
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix, accuracy_score

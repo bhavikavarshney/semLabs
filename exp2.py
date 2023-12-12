@@ -24,6 +24,7 @@ from sklearn.decomposition import PCA
 pca = PCA(n_components = 2)
 X_train = pca.fit_transform(X_train) # Fit and transform the training set
 X_test = pca.transform(X_test) # Only transform the test set to avoid information leakage
+explained_variance = pca.explained_variance_ratio_ # Get the explained variance ratio
 
 # Training the logistic regression model on the training set
 from sklearn.linear_model import LogisticRegression
@@ -34,8 +35,8 @@ classifier.fit(X_train, y_train)
 from sklearn.metrics import confusion_matrix, accuracy_score
 y_pred = classifier.predict(X_test)
 cm = confusion_matrix(y_test, y_pred)
-print(cm)
-accuracy_score(y_test, y_pred)
+ac = accuracy_score(y_test, y_pred)
+print(cm, ac)
 
 # Visualizing the training set results
 from matplotlib.colors import ListedColormap
