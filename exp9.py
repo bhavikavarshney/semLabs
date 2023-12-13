@@ -1,14 +1,14 @@
 # DBSCAN (Density Based Spatial Clustering of Applications with Noise)
 # Importing libraries
-import numpy as nmp
-import pandas as pds
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as pplt
 from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import normalize
 from sklearn.decomposition import PCA
 
-M = pds.read_csv('sampleDataset.csv')
+M = pd.read_csv('sampleDataset.csv')
 M = M.drop('CUST_ID', axis = 1)
 M.fillna(method ='ffill', inplace = True)
 print(M.head())
@@ -16,10 +16,10 @@ print(M.head())
 scalerFD = StandardScaler()
 M_scaled = scalerFD.fit_transform(M)
 M_normalized = normalize(M_scaled)
-M_normalized = pds.DataFrame(M_normalized)
+M_normalized = pd.DataFrame(M_normalized)
 pcaFD = PCA(n_components = 2) 
 M_principal = pcaFD.fit_transform(M_normalized)
-M_principal = pds.DataFrame(M_principal)
+M_principal = pd.DataFrame(M_principal)
 M_principal.columns = ['C1', 'C2']
 print(M_principal.head())
 
@@ -59,20 +59,13 @@ colours1[-1] = 'k'
 
 cvec = [colours1[label] for label in labeling]
 colors = ['r', 'g', 'b', 'c', 'y', 'm', 'k' ]
-r = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[0])
-g = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[1])
-b = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[2])
-c = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[3])
-y = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[4])
-m = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[5])
-k = pplt.scatter(
-M_principal['C1'], M_principal['C2'], marker ='o', color = colors[6])
+r = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[0])
+g = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[1])
+b = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[2])
+c = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[3])
+y = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[4])
+m = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[5])
+k = pplt.scatter(M_principal['C1'], M_principal['C2'], marker ='o', color = colors[6])
 
 pplt.figure(figsize =(9, 9))
 pplt.scatter(M_principal['C1'], M_principal['C2'], c = cvec)
