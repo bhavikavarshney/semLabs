@@ -3,7 +3,7 @@
         <?php
             $con = mysql_connect("localhost","root","") or die(mysql_error());
             mysql_select_db ("test") or die(mysql_error());
-            $sql="insert into books (title, author, publisher) values ('$_POST[title]', r]', '$_POST[publisher]')";
+            $sql="insert into books (title, author, publisher) values ('$_POST[title]', '$_POST[author]', '$_POST[publisher]')";
             if (!mysql_query($sql,$con)){
                 die('Error: ' . mysql_error());
             }
