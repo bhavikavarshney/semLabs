@@ -23,6 +23,7 @@ void main(){
     // Null character at the end of the string
     ct[i] = '\0';
     printf("\nEncrypted message is, %s", ct);
+    
     // Decryption
     for(i = 0; i < len; i++) {
         dt[i] = ct[i] - key;
