@@ -3,3 +3,4 @@ WordCount > Properties > Java Build Path (left) > Libraries (top) > Add External
 File System > 
             usr > lib > hadoop > select all jar files > Ok
             usr > lib > hadoop > client-0.20 > Shift+A > Ok
+                        hadoop > lib > select all > Ok
